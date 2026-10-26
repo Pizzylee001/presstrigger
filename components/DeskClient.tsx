@@ -176,8 +176,8 @@ export function DeskClient({ matchId, initialMinute }: Props) {
                 <div className="guide">
                   <div className="l3bar" />
                   <div className="l3box">
-                    <div className="l3name">{latestCall ? `${punditName(latestCall.pundit)} desk` : "Match feed"}</div>
-                    <div className="l3line">{latestCall ? latestCall.claim : onAir ? onAir.text : "Waiting for the feed"}</div>
+                    <div className="l3name">{openCalls.length > 0 ? `${punditName(openCalls[openCalls.length - 1].pundit)} desk` : "Match feed"}</div>
+                    <div className="l3line">{openCalls.length > 0 ? openCalls[openCalls.length - 1].claim : onAir ? onAir.text : "Waiting for the feed"}</div>
                   </div>
                 </div>
               </div>
