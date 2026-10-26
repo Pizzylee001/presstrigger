@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { parseDeskParams } from "../lib/deeplink.ts";
 import { getMatchState } from "../lib/engine.ts";
 import { clock, mmss, resultLabel } from "../lib/format.ts";
 import { PUNDITS } from "../lib/pundits.ts";
@@ -32,13 +33,12 @@ export function DeskClient({ matchId, initialMinute }: Props) {
   }, [playing, atEnd]);
 
   // The desk accepts a start point so a demo or a screenshot can land on a
-  // known minute: ?at=63.2&paused=1
+  // known minute: ?at=63.2&paused=1. Without one it keeps the default minute.
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const at = Number(params.get("at"));
-    if (Number.isFinite(at) && at >= 0 && at <= 90) setMinute(at);
-    if (params.get("paused") === "1") setPlaying(false);
-  }, []);
+    const params = parseDeskParams(window.location.search, initialMinute);
+    setMinute(params.minute);
+    if (params.paused) setPlaying(false);
+  }, [initialMinute]);
 
   const state = useMemo(() => getMatchState(matchId, minute), [matchId, minute]);
   if (!state) return null;

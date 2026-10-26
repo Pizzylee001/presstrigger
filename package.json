@@ -8,7 +8,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node --test tests/engine.test.ts"
+    "test": "node --test tests/engine.test.ts tests/deeplink.test.ts"
   },
   "dependencies": {
     "next": "^16.4.3",
