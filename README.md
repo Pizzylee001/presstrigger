@@ -128,7 +128,7 @@ The interesting minute is 63:13. Two calls are open. At 65:00 control block is g
 npm test
 ```
 
-Fifteen tests. They cover the things that would make every screen a lie if they broke:
+Twenty tests. They cover the things that would make every screen a lie if they broke:
 
 - the same seed builds the same match, every time
 - events are chronological and ids are unique
@@ -144,6 +144,7 @@ Fifteen tests. They cover the things that would make every screen a lie if they 
 - records add up to the calls that were graded
 - every match produces at least one hit and one miss
 - asking for the same minute twice gives the same state
+- a missing or malformed start minute keeps the desk at 63:13 instead of resetting to kickoff
 
 ---
 
