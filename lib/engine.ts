@@ -4,7 +4,7 @@ import { generateCalls } from "./pundits.ts";
 import { gradeCalls } from "./resolver.ts";
 import type { GradedCall, Match, MatchState, PunditId, PunditRecord } from "./types.ts";
 
-export const DEFAULT_AS_OF = 63;
+export const DEFAULT_AS_OF = 63.23;
 export const FULL_TIME = 90;
 
 const matchCache = new Map<string, Match>();
