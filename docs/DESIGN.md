@@ -214,3 +214,5 @@ The ribbon is drawn inline as SVG, not shipped as image files. Its faces read fr
 The theme switch writes `pt-theme` to local storage, accepts `?theme=dark` as an override, and falls back to the system preference. The no flash script sits in the document head.
 
 Every number on the record and recap pages is computed from the same match state the desk uses. Nothing is typed in by hand.
+
+Height matters as much as width. Below 820px tall the desk switches to a compact type scale and the ribbon compresses; below 700px it compresses further. Below 1180px wide the three columns stack and the page scrolls, because three dense columns need about 1200px before the rundown starts wrapping to five lines. The minute axis is HTML, not SVG text, so it stays crisp when the chart is compressed.

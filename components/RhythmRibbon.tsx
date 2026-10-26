@@ -15,6 +15,19 @@ const BASE_Y = 114;
 const MAX_H = 64;
 const EXTRUSION = 9;
 const STEM = 18;
+const VIEW_W = 1360;
+const VIEW_H = 122;
+
+// Where each minute label sits across the full width, so the axis can live in
+// HTML and keep its type crisp even when the chart is compressed vertically.
+const MARKS: Array<{ minute: number; left: number }> = [
+  { minute: 15, left: (222 / VIEW_W) * 100 },
+  { minute: 30, left: (437 / VIEW_W) * 100 },
+  { minute: 45, left: (652 / VIEW_W) * 100 },
+  { minute: 60, left: (867 / VIEW_W) * 100 },
+  { minute: 75, left: (1082 / VIEW_W) * 100 },
+  { minute: 90, left: (1297 / VIEW_W) * 100 }
+];
 
 function xFor(bucket: number): number {
   return START_X + bucket * (BAR_W + GAP);
@@ -64,66 +77,49 @@ export function RhythmRibbon({ pressure, owner, calls, home, away }: Props) {
     })
   );
 
-  const marks = [15, 30, 45, 60, 75, 90];
-
   return (
-    <svg
-      className="ribbonsvg"
-      viewBox="0 0 1360 142"
-      role="img"
-      aria-label={`Pressure across ninety minutes. Blue is ${home} on top, grey is ${away}. ${calls.length} calls marked, with pins for each one.`}
-    >
-      <line x1="8" y1={BASE_Y} x2="1338" y2={BASE_Y} stroke="var(--rib-axis)" strokeWidth="1" />
+    <div className="ribbonbox">
+      <svg
+        className="ribbonsvg"
+        viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+        preserveAspectRatio="none"
+        role="img"
+        aria-label={`Pressure across ninety minutes. Blue is ${home} on top, grey is ${away}. ${calls.length} calls marked, with pins for each one.`}
+      >
+        <line x1="8" y1={BASE_Y} x2="1338" y2={BASE_Y} stroke="var(--rib-axis)" strokeWidth="1" />
 
-      {buckets.map((bar) => (
-        <g key={bar.index}>
-          <polygon
-            points={bar.side}
-            fill={bar.isHome ? "var(--rib-home-side)" : "var(--rib-away-side)"}
-          />
-          <polygon
-            points={bar.face}
-            fill={bar.isHome ? "var(--rib-home-top)" : "var(--rib-away-top)"}
-          />
-          <rect
-            x={bar.x}
-            y={bar.top}
-            width={BAR_W}
-            height={bar.h}
-            fill={bar.isHome ? "var(--rib-home-front)" : "var(--rib-away-front)"}
-          />
-        </g>
-      ))}
-
-      {marks.map((minute) => {
-        const bucket = Math.min(29, Math.floor(minute / 3) - 1);
-        const x = xFor(bucket) + BAR_W;
-        return (
-          <text
-            key={minute}
-            x={x}
-            y={BASE_Y + 20}
-            textAnchor="middle"
-            fill="var(--rib-label)"
-            fontSize="9"
-            fontWeight="600"
-            letterSpacing=".08em"
-            fontFamily="Public Sans, system-ui, sans-serif"
-          >
-            {minute}
-          </text>
-        );
-      })}
-
-      {pins.map(({ call, cx, top }) => {
-        const color = PIN_COLOR[call.state];
-        return (
-          <g key={call.id}>
-            <line x1={cx} y1={top} x2={cx} y2={top - STEM} stroke={color} strokeWidth="1.5" />
-            <circle cx={cx} cy={top - STEM - 4} r="4" fill={color} stroke="var(--paper)" strokeWidth="1.5" />
+        {buckets.map((bar) => (
+          <g key={bar.index}>
+            <polygon points={bar.side} fill={bar.isHome ? "var(--rib-home-side)" : "var(--rib-away-side)"} />
+            <polygon points={bar.face} fill={bar.isHome ? "var(--rib-home-top)" : "var(--rib-away-top)"} />
+            <rect
+              x={bar.x}
+              y={bar.top}
+              width={BAR_W}
+              height={bar.h}
+              fill={bar.isHome ? "var(--rib-home-front)" : "var(--rib-away-front)"}
+            />
           </g>
-        );
-      })}
-    </svg>
+        ))}
+
+        {pins.map(({ call, cx, top }) => {
+          const color = PIN_COLOR[call.state];
+          return (
+            <g key={call.id}>
+              <line x1={cx} y1={top} x2={cx} y2={top - STEM} stroke={color} strokeWidth="1.5" />
+              <circle cx={cx} cy={top - STEM - 4} r="4" fill={color} stroke="var(--paper)" strokeWidth="1.5" />
+            </g>
+          );
+        })}
+      </svg>
+
+      <div className="ribbonaxis" aria-hidden="true">
+        {MARKS.map((mark) => (
+          <span key={mark.minute} style={{ left: `${mark.left}%` }}>
+            {mark.minute}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }

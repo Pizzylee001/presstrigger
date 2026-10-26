@@ -343,3 +343,80 @@ table.record td .res.void{color:var(--ink-3)}
   .tabs{display:flex;order:6;flex:1 1 100%;gap:18px;padding-top:8px;margin-top:4px;border-top:1px solid var(--rule)}
   .tab{font-size:11px;padding:4px 0}
 }
+
+/* compact desk for laptop heights. The 900px layout is the roomy version. */
+@media (max-height:820px){
+  .tally{height:60px;gap:22px}
+  .wordmark{font-size:21px}
+  .tab{font-size:12px;padding:6px 0}
+  .fixture .teams{font-size:19px}
+  .fixture .meta{font-size:8.5px}
+  .clock{font-size:30px}
+  .clockbox{gap:10px;padding-left:18px}
+  .icon-btn{width:30px;height:30px}
+  .band{padding:8px 28px 0}
+  .bandhead{margin-bottom:4px}
+  .ribbonsvg{height:96px}
+  .desk{padding:10px 28px 0;gap:34px}
+  .colhead{padding-bottom:7px}
+  .row{padding:11px 8px 11px 0}
+  .row .txt{font-size:12.5px}
+  .row .min{font-size:10.5px}
+  .rowfoot{padding:8px 0 10px}
+  .mon-head{padding:7px 12px;font-size:8px}
+  .screenwrap{padding:8px 10px}
+  .guide{margin:6px;padding:10px 10px 8px}
+  .l3name{font-size:8px}
+  .l3line{font-size:15px}
+  .mon-plain{padding:10px 12px}
+  .plain-line{font-size:13.5px}
+  .mon-meta{margin-top:5px;font-size:9px}
+  .mon-foot{padding:7px 12px;font-size:8px}
+  .block{margin-top:12px;padding-top:10px}
+  .claim{font-size:16px}
+  .meta-row{margin-top:6px;font-size:9px;gap:10px}
+  .pundit{padding:10px 0 12px}
+  .pundit .name{font-size:18px}
+  .pundit .bias{font-size:10.5px}
+  .pundit .read{font-size:11.5px;margin-top:6px}
+  .pundit .rec{margin-top:6px}
+  .pundit .open{margin-top:6px;font-size:9px}
+  .open-empty{margin-top:12px;padding-top:10px;font-size:11px}
+  .alsoopen{margin-top:6px;font-size:9.5px}
+  .footline{padding:9px 28px;font-size:8.5px}
+  .replay .state{font-size:8.5px}
+  .replay button{padding:4px 7px;font-size:8.5px}
+}
+@media (max-height:700px){
+  .ribbonsvg{height:78px}
+  .desk{padding:8px 28px 0;gap:26px}
+  .row{padding:8px 8px 8px 0}
+  .mon-plain{padding:8px 12px}
+  .mon-foot{display:none}
+  .block{margin-top:10px}
+  .pundit .bias{display:none}
+  .tally{height:54px}
+  .band{padding:6px 28px 0}
+}
+.ribbonbox{position:relative;width:100%}
+.ribbonaxis{position:relative;height:14px;margin-top:1px}
+.ribbonaxis span{position:absolute;top:0;transform:translateX(-50%);font-size:9px;font-weight:600;letter-spacing:.08em;color:var(--rib-label)}
+@media (max-width:980px){.ribbonbox{min-width:680px}.ribbonsvg{min-width:0}}
+@media (max-height:820px){.ribbonsvg{height:118px}}
+@media (max-height:700px){.ribbonsvg{height:100px}}
+
+/* Three dense columns need about 1200px. Below that the desk stacks and the
+   page scrolls, which is the same deal as the phone layout. */
+@media (max-width:1180px){
+  body{overflow:auto}
+  .app{height:auto;min-height:100vh}
+  .desk{grid-template-columns:1fr;gap:34px;padding:18px 22px 26px}
+  .col:nth-child(2){order:1}
+  .col:nth-child(1){order:2}
+  .col:nth-child(3){order:3}
+  .rowfoot{margin-top:0;padding:12px 0 0}
+  .ribbonwrap{overflow-x:auto;padding-bottom:4px}
+  .ribbonbox{min-width:680px}
+  .bandhead{flex-wrap:wrap;gap:2px 12px}
+  .page{overflow:visible}
+}
