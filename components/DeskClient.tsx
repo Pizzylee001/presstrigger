@@ -54,7 +54,6 @@ export function DeskClient({ matchId, initialMinute }: Props) {
   );
 
   const openCalls = state.calls.filter((call) => call.state === "open");
-  const latestCall = state.calls.length > 0 ? state.calls[state.calls.length - 1] : null;
   const onAir = state.onAir;
   const previous = state.visible.length > 1 ? state.visible[state.visible.length - 2] : null;
   const evidenceCount =

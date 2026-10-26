@@ -22,13 +22,13 @@ export function TallyBar({ matchId, fixture, meta, active, clockText, period, li
         </Link>
       </div>
       <div className="tabs">
-        <Link className={`tab${active === "desk" ? " active" : ""}`} href={`/match/${matchId}`}>
+        <Link className={`tab${active === "desk" ? " active" : ""}`} href={`/match/${matchId}`} aria-current={active === "desk" ? "page" : undefined}>
           Live desk
         </Link>
-        <Link className={`tab${active === "record" ? " active" : ""}`} href="/ledger">
+        <Link className={`tab${active === "record" ? " active" : ""}`} href="/ledger" aria-current={active === "record" ? "page" : undefined}>
           The record
         </Link>
-        <Link className={`tab${active === "recap" ? " active" : ""}`} href={`/recap/${matchId}`}>
+        <Link className={`tab${active === "recap" ? " active" : ""}`} href={`/recap/${matchId}`} aria-current={active === "recap" ? "page" : undefined}>
           Recap
         </Link>
       </div>

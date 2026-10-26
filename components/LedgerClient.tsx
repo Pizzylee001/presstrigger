@@ -98,7 +98,7 @@ export function LedgerClient({ rows }: { rows: LedgerRow[] }) {
             <th>Minute</th>
             <th>Desk</th>
             <th>Call</th>
-            <th>Horizon</th>
+            <th className="hcol">Horizon</th>
             <th>Result</th>
             <th className="evcol">Evidence</th>
           </tr>
@@ -130,7 +130,7 @@ export function LedgerClient({ rows }: { rows: LedgerRow[] }) {
                     <span>{row.read}</span>
                     {row.note ? <span>{row.note}</span> : null}
                   </td>
-                  <td className="num">{row.horizon}:00</td>
+                  <td className="num hcol">{row.horizon}:00</td>
                   <td>
                     <span className={`res ${row.state}`}>{resultLabel(row.state)}</span>
                   </td>
