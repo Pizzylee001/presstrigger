@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Press Trigger">
+  <rect width="64" height="64" fill="#1B3A8C"/>
+  <rect x="11" y="38" width="9" height="14" fill="#F6F5F1"/>
+  <rect x="24" y="28" width="9" height="24" fill="#F6F5F1"/>
+  <rect x="37" y="18" width="9" height="34" fill="#F6F5F1"/>
+  <circle cx="47" cy="13" r="4" fill="#5FD3A0"/>
+</svg>
